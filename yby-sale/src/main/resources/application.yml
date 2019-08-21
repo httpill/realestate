@@ -1,0 +1,30 @@
+server:
+  port: 8901
+spring:
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.5.58:3306/181_saas?serverTimezone=GMT
+    username: root
+    password: root
+    #druid数据库连接池配置
+    druid:
+      #初始化连接池数量
+      initialSize: 5
+      #最大连接池数量
+      maxActive: 10
+      #最小连接池数量
+      minIdle: 5
+      #连接池最大等待时间
+      maxWait: 30000
+      #最小执行连接池空闲销毁时间
+      minEvictableIdleTimeMillis: 30000
+      #最大执行连接池空闲销毁时间
+      maxEvictableIdleTimeMillis: 35000
+      #引用拦截器
+      #filters: wall,log4j
+
+mybatis:
+  mapper-locations: classpath:com/yibayi/dao/**/*.xml
+logging:
+  config: classpath:logback-boot.xml
