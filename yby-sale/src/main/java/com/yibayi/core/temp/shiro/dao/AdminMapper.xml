@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yibayi.core.temp.shiro.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.yibayi.core.temp.shiro.po.Admin" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="wechat_qr" property="wechatQr" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="idcard_front_pic" property="idcardFrontPic" jdbcType="VARCHAR" />
+    <result column="idcard_back_pic" property="idcardBackPic" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="passport" property="passport" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="contact_way" property="contactWay" jdbcType="VARCHAR" />
+    <result column="contact_relation" property="contactRelation" jdbcType="VARCHAR" />
+    <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="lose_count" property="loseCount" jdbcType="INTEGER" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="TINYINT" />
+    <result column="is_check" property="isCheck" jdbcType="TINYINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="REAL" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="modifier" property="modifier" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, user_name, nick_name, password, age, signature, role_id, type, status, sex, birthday, 
+      area_code, city_code, area_name, address, mobile, phone, email, qq, wechat, wechat_qr, 
+      idcard, idcard_front_pic, idcard_back_pic, photo, passport, contact, contact_way, 
+      contact_relation, register_ip, login_ip, login_time, lose_count, salt, is_enabled, 
+      is_check, description, sort, is_delete, creator, modifier, create_time, update_time
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yibayi.core.temp.shiro.po.AdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    id,user_name,nick_name,password,age,signature,role_id,type,status,sex,birthday,area_code,city_code,area_name,address,mobile,phone,email,qq,wechat,wechat_qr,idcard,idcard_front_pic,idcard_back_pic,photo,passport,contact,contact_way,contact_relation,register_ip,login_ip,login_time,lose_count,salt,is_enabled,is_check,description,sort,is_delete,creator,modifier,create_time,update_time
+    from admin
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from admin
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yibayi.core.temp.shiro.po.AdminExample" >
+    delete from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yibayi.core.temp.shiro.po.Admin" >
+    insert into admin (id, user_name, nick_name, 
+      password, age, signature, 
+      role_id, type, status, 
+      sex, birthday, area_code, 
+      city_code, area_name, address, 
+      mobile, phone, email, 
+      qq, wechat, wechat_qr, 
+      idcard, idcard_front_pic, idcard_back_pic, 
+      photo, passport, contact, 
+      contact_way, contact_relation, register_ip, 
+      login_ip, login_time, lose_count, 
+      salt, is_enabled, is_check, 
+      description, sort, is_delete, 
+      creator, modifier, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{signature,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, #{areaCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{wechatQr,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{idcardFrontPic,jdbcType=VARCHAR}, #{idcardBackPic,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{passport,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{contactWay,jdbcType=VARCHAR}, #{contactRelation,jdbcType=VARCHAR}, #{registerIp,jdbcType=VARCHAR}, 
+      #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{loseCount,jdbcType=INTEGER}, 
+      #{salt,jdbcType=VARCHAR}, #{isEnabled,jdbcType=TINYINT}, #{isCheck,jdbcType=TINYINT}, 
+      #{description,jdbcType=VARCHAR}, #{sort,jdbcType=REAL}, #{isDelete,jdbcType=TINYINT}, 
+      #{creator,jdbcType=BIGINT}, #{modifier,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yibayi.core.temp.shiro.po.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="wechatQr != null" >
+        wechat_qr,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="idcardFrontPic != null" >
+        idcard_front_pic,
+      </if>
+      <if test="idcardBackPic != null" >
+        idcard_back_pic,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="passport != null" >
+        passport,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="contactWay != null" >
+        contact_way,
+      </if>
+      <if test="contactRelation != null" >
+        contact_relation,
+      </if>
+      <if test="registerIp != null" >
+        register_ip,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="loseCount != null" >
+        lose_count,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatQr != null" >
+        #{wechatQr,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFrontPic != null" >
+        #{idcardFrontPic,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBackPic != null" >
+        #{idcardBackPic,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null" >
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelation != null" >
+        #{contactRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null" >
+        #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseCount != null" >
+        #{loseCount,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=REAL},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yibayi.core.temp.shiro.po.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update admin
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.signature != null" >
+        signature = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.areaCode != null" >
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null" >
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatQr != null" >
+        wechat_qr = #{record.wechatQr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardFrontPic != null" >
+        idcard_front_pic = #{record.idcardFrontPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardBackPic != null" >
+        idcard_back_pic = #{record.idcardBackPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passport != null" >
+        passport = #{record.passport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null" >
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactWay != null" >
+        contact_way = #{record.contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactRelation != null" >
+        contact_relation = #{record.contactRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerIp != null" >
+        register_ip = #{record.registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginIp != null" >
+        login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginTime != null" >
+        login_time = #{record.loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loseCount != null" >
+        lose_count = #{record.loseCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.salt != null" >
+        salt = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEnabled != null" >
+        is_enabled = #{record.isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.isCheck != null" >
+        is_check = #{record.isCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=REAL},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifier != null" >
+        modifier = #{record.modifier,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update admin
+    set id = #{record.id,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      birthday = #{record.birthday,jdbcType=DATE},
+      area_code = #{record.areaCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      wechat_qr = #{record.wechatQr,jdbcType=VARCHAR},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      idcard_front_pic = #{record.idcardFrontPic,jdbcType=VARCHAR},
+      idcard_back_pic = #{record.idcardBackPic,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      passport = #{record.passport,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      contact_way = #{record.contactWay,jdbcType=VARCHAR},
+      contact_relation = #{record.contactRelation,jdbcType=VARCHAR},
+      register_ip = #{record.registerIp,jdbcType=VARCHAR},
+      login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      login_time = #{record.loginTime,jdbcType=TIMESTAMP},
+      lose_count = #{record.loseCount,jdbcType=INTEGER},
+      salt = #{record.salt,jdbcType=VARCHAR},
+      is_enabled = #{record.isEnabled,jdbcType=TINYINT},
+      is_check = #{record.isCheck,jdbcType=TINYINT},
+      description = #{record.description,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=REAL},
+      is_delete = #{record.isDelete,jdbcType=TINYINT},
+      creator = #{record.creator,jdbcType=BIGINT},
+      modifier = #{record.modifier,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yibayi.core.temp.shiro.po.Admin" >
+    update admin
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatQr != null" >
+        wechat_qr = #{wechatQr,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFrontPic != null" >
+        idcard_front_pic = #{idcardFrontPic,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBackPic != null" >
+        idcard_back_pic = #{idcardBackPic,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null" >
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelation != null" >
+        contact_relation = #{contactRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null" >
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseCount != null" >
+        lose_count = #{loseCount,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=REAL},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yibayi.core.temp.shiro.po.Admin" >
+    update admin
+    set user_name = #{userName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      signature = #{signature,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      wechat_qr = #{wechatQr,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      idcard_front_pic = #{idcardFrontPic,jdbcType=VARCHAR},
+      idcard_back_pic = #{idcardBackPic,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      passport = #{passport,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      contact_way = #{contactWay,jdbcType=VARCHAR},
+      contact_relation = #{contactRelation,jdbcType=VARCHAR},
+      register_ip = #{registerIp,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      lose_count = #{loseCount,jdbcType=INTEGER},
+      salt = #{salt,jdbcType=VARCHAR},
+      is_enabled = #{isEnabled,jdbcType=TINYINT},
+      is_check = #{isCheck,jdbcType=TINYINT},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=REAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      creator = #{creator,jdbcType=BIGINT},
+      modifier = #{modifier,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

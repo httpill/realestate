@@ -16,6 +16,7 @@
         <druid.version>1.1.17</druid.version>
         <mybatis.version>2.1.0</mybatis.version>
         <mybatisplus.version>3.1.2</mybatisplus.version>
+        <fastjson.version>1.2.59</fastjson.version>
         <yby.common.version>0.0.1-SNAPSHOT</yby.common.version>
         <yby.pojo.version>0.0.1-SNAPSHOT</yby.pojo.version>
     </properties>
@@ -73,6 +74,13 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatisplus.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

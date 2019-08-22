@@ -29,7 +29,7 @@ public class TestController {
 
     @RequestMapping("/id")
     public ResponseBean<String> id(){
-        return new ResponseBean(IdGenerator.create16BitNumericId(), null).success();
+        return new ResponseBean(IdGenerator.create32BitUId(), null).success();
     }
 
     @RequestMapping("/null")

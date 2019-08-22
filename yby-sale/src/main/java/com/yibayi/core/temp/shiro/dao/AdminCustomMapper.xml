@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yibayi.core.temp.shiro.dao.AdminCustomMapper">
+	<resultMap id="BaseResultMap" type="com.yibayi.core.temp.shiro.po.Admin"
+		extends="com.yibayi.core.temp.shiro.dao.AdminMapper.BaseResultMap">
+	</resultMap>
+	
+	<resultMap id="CustomResultMap"
+		type="com.yibayi.core.temp.shiro.po.AdminCustom"
+		extends="com.yibayi.core.temp.shiro.dao.AdminMapper.BaseResultMap">
+	</resultMap>
+	
+	<!-- 逻辑删除 -->
+	<update id="delete" parameterType="com.yibayi.core.temp.shiro.po.Admin">
+		UPDATE admin SET is_delete = 1 WHERE id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 获取列表 -->
+	<select id="list" resultMap="CustomResultMap">
+		SELECT * FROM admin WHERE is_delete = 0
+		ORDER BY update_time DESC
+		LIMIT #{pageable.start}, #{pageable.pageSize}
+	</select>
+
+	<!-- 获取总数 -->
+	<select id="total" resultType="java.lang.Long" parameterType="com.yibayi.core.temp.shiro.po.AdminCustom">
+		SELECT COUNT(id) FROM admin WHERE is_delete = 0
+	</select>
+	
+	<!-- 获取详情 -->
+	<select id="detail" resultMap="CustomResultMap" parameterType="java.lang.Long" >
+    	SELECT * FROM admin WHERE is_delete = 0 AND id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 根据用户名获取 -->
+	<select id="getByAccount" resultMap="CustomResultMap" parameterType="java.lang.String" >
+    	SELECT * FROM admin WHERE is_delete = 0 AND mobile = #{account}
+	</select>
+</mapper>

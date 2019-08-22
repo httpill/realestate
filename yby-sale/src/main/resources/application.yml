@@ -25,6 +25,6 @@ spring:
       #filters: wall,log4j
 
 mybatis:
-  mapper-locations: classpath:com/yibayi/dao/**/*.xml
+  mapper-locations: classpath:com/yibayi/dao/**/*.xml,classpath:com/yibayi/core/temp/shiro/dao/*.xml
 logging:
   config: classpath:logback-boot.xml

@@ -1,7 +1,6 @@
 package bean.common.response;
 
 import lombok.Data;
-import lombok.NonNull;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -42,6 +41,8 @@ public final class ResponseBean<T> implements Serializable {
 
     /**
      * 响应实体构造函数 - 响应状态以传入响应状态枚举值为准
+     * @param status 响应状态枚举类
+     *        {@link ResponseStatusEnum}
      * */
     public ResponseBean(ResponseStatusEnum status){
         this.status = status.getCode();
@@ -51,6 +52,8 @@ public final class ResponseBean<T> implements Serializable {
 
     /**
      * 响应实体构造函数 - 传入响应对象及响应信息预定为成功
+     * @param obj 响应对象
+     * @param msg 响应信息
      * */
     public ResponseBean(T obj, String msg){
         this.status = ResponseStatusEnum.SUCCESS.getCode();
@@ -60,6 +63,9 @@ public final class ResponseBean<T> implements Serializable {
 
     /**
      * 响应实体构造函数 - 全参数构造函数以传入响应状态枚举为准
+     * @param status 响应状态枚举类
+     * @param obj 响应对象
+     * @param msg 响应信息
      * */
     public ResponseBean(ResponseStatusEnum status, T obj, String msg){
         this.status = status.getCode();
@@ -70,7 +76,7 @@ public final class ResponseBean<T> implements Serializable {
     /**
      * 更新响应状态为请求成功
      * */
-    public ResponseBean success(){
+    public ResponseBean<T> success(){
         this.status = ResponseStatusEnum.SUCCESS.getCode();
         return this;
     }
@@ -78,8 +84,17 @@ public final class ResponseBean<T> implements Serializable {
     /**
      * 更新响应状态为请求失败
      * */
-    public ResponseBean failed(){
+    public ResponseBean<T> failed(){
         this.status = ResponseStatusEnum.FAILED.getCode();
+        return this;
+    }
+
+    /**
+     * 变更响应状态
+     * @param status 响应状态枚举类
+     * */
+    public ResponseBean<T> changeStatus(ResponseStatusEnum status){
+        this.status = status.getCode();
         return this;
     }
 }

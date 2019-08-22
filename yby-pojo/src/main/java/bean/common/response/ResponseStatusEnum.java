@@ -7,7 +7,8 @@ package bean.common.response;
 public enum ResponseStatusEnum {
 
     SUCCESS((short) 200, "OK", "请求成功"),
-    FAILED((short) 400, "Bad Request", "请求失败");
+    FAILED((short) 400, "Bad Request", "请求失败"),
+    UNAUTHORIZED((short) 401, "Unauthorized", "当前请求需要用户验证");
 
     private final Short code;
 
