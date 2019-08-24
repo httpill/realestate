@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>yby-parent</artifactId>
         <groupId>com.yibayi</groupId>
+        <artifactId>yby-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../yby-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>com.yibayi</groupId>

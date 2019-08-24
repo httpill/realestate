@@ -28,3 +28,9 @@ mybatis:
   mapper-locations: classpath:com/yibayi/dao/**/*.xml,classpath:com/yibayi/core/temp/shiro/dao/*.xml
 logging:
   config: classpath:logback-boot.xml
+
+yibayi:
+  #181服务域名列表 - 涉及登陆用户的服务域名必填
+  #serverDomains:localhost,181.com
+  token:
+    cookie-name:AUTH_TOKEN

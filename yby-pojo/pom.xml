@@ -8,7 +8,7 @@
         <artifactId>yby-parent</artifactId>
         <groupId>com.yibayi</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../yby-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>com.yibayi</groupId>

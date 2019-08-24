@@ -7,6 +7,7 @@
     <groupId>com.yibayi</groupId>
     <artifactId>yby-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -17,8 +18,6 @@
         <mybatis.version>2.1.0</mybatis.version>
         <mybatisplus.version>3.1.2</mybatisplus.version>
         <fastjson.version>1.2.59</fastjson.version>
-        <yby.common.version>0.0.1-SNAPSHOT</yby.common.version>
-        <yby.pojo.version>0.0.1-SNAPSHOT</yby.pojo.version>
     </properties>
 
     <dependencyManagement>
@@ -83,6 +82,15 @@
 
         </dependencies>
     </dependencyManagement>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <modules>
         <module>../yby-common</module>
