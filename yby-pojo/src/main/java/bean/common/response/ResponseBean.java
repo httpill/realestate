@@ -74,6 +74,15 @@ public final class ResponseBean<T> implements Serializable {
     }
 
     /**
+     * 变更响应状态
+     * @param status 响应状态枚举类
+     * */
+    public ResponseBean<T> changeStatus(ResponseStatusEnum status){
+        this.status = status.getCode();
+        return this;
+    }
+
+    /**
      * 更新响应状态为请求成功
      * */
     public ResponseBean<T> success(){
@@ -90,11 +99,11 @@ public final class ResponseBean<T> implements Serializable {
     }
 
     /**
-     * 变更响应状态
-     * @param status 响应状态枚举类
+     * 更新响应状态为未登录
      * */
-    public ResponseBean<T> changeStatus(ResponseStatusEnum status){
-        this.status = status.getCode();
+    public ResponseBean<T> unlogged(){
+        this.status = ResponseStatusEnum.UNAUTHORIZED.getCode();
         return this;
     }
+
 }
