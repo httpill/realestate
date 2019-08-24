@@ -25,7 +25,8 @@ public class TestController {
     /**
      * 1.实现了注解声明指定接口请求必须登陆
      * 2.修改登陆存放token逻辑，配置二手房项目跨域cookie的接收，使用cookie多端统一获取登陆信息。
-     * 3.配置本地redis。通过cookie获取测试环境登陆token并通过本地redis模拟获取用户信息。
+     * 3.BaseService中添加获取当前登陆人id的方法
+     * 4.配置本地redis。通过cookie获取测试环境登陆token并通过本地redis模拟获取用户信息。
      * 测试了配置hosts文件local.181.com在过度环境同根域名不同二级域名的情况时，通过JavaScript请求本地服务
      * 获取配置了Domain为.181.com跨域cookie信息。并且成功从本地测试环境获取到redis数据使用mybatisplus获取用户信息。
      *   var xhttp = new XMLHttpRequest();
