@@ -1,10 +1,11 @@
 server:
   port: 8901
+
 spring:
   #数据库配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.5.58:3306/181_realestate?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.5.58:3306/181_realestate?characterEncoding=UTF-8
     username: root
     password: root
     #druid数据库连接池配置
@@ -26,11 +27,15 @@ spring:
 
 mybatis:
   mapper-locations: classpath:com/yibayi/dao/**/*.xml,classpath:com/yibayi/core/temp/shiro/dao/*.xml
-logging:
-  config: classpath:logback-boot.xml
 
-yibayi:
+#logging:
+#  config: classpath:./logback-boot.xml
+#  path: d:/logs/yibayi
+#  pattern:
+#    console: %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+#    file: %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+
+token:
+  cookieName: AUTH_TOKEN
   #181服务域名列表 - 涉及登陆用户的服务域名必填
   #serverDomains:localhost,181.com
-  token:
-    cookie-name:AUTH_TOKEN

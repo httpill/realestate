@@ -24,13 +24,15 @@ public class CrossTokenFilter implements Filter {
     @Autowired
     private Token token;
 
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 
+    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        /*HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String origin = request.getHeader("Origin");
         if(origin == null){
@@ -38,9 +40,10 @@ public class CrossTokenFilter implements Filter {
         }
         response.setHeader("Access-Control-Allow-Origin", origin);
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        String action = request.getHeader("SOAPAction");
+        String action = request.getHeader("SOAPAction");*/
     }
 
+    @Override
     public void destroy() {
 
     }

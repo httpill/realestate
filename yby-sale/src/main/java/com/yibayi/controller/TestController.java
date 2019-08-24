@@ -23,7 +23,6 @@ public class TestController {
         throw new RuntimeException("运行时异常");
     }
 
-    @MustLogin
     @RequestMapping("/timeoutException")
     public ResponseBean<Integer> timeoutException() throws TimeoutException {
         throw new TimeoutException("超时异常");

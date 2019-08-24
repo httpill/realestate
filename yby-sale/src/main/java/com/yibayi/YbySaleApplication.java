@@ -7,11 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
+@SpringBootApplication
 @ComponentScan(basePackages = "com.yibayi")
 @MapperScan(basePackages = {"com.yibayi.dao.*","com.yibayi.core.temp.shiro.dao.*"})
-@SpringBootApplication
 public class YbySaleApplication {
 
     public static void main(String[] args) {
@@ -19,7 +18,7 @@ public class YbySaleApplication {
     }
 
     @Bean
-    @ConfigurationProperties("yibayi.token")
+    @ConfigurationProperties("token")
     public Token token(){
         return new Token();
     }
