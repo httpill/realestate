@@ -1,0 +1,13 @@
+# ip地址
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    password: password
+    timeout: 10000
+    jedis:
+      pool:
+        max-idle: 300
+        max-wait: 1000
+        time-between-eviction-runs: 1024

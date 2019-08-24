@@ -3,6 +3,7 @@ package com.yibayi.core.annotation.impl;
 import com.yibayi.core.annotation.MustLogin;
 import com.yibayi.core.exception.UnloggedException;
 import com.yibayi.core.permission.entity.Token;
+import com.yibayi.core.redis.RedisService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -27,6 +28,9 @@ public class MustLoginImpl {
     @Autowired
     private Token token;
 
+    @Autowired
+    private RedisService redisService;
+
     @Pointcut("@annotation(com.yibayi.core.annotation.MustLogin)")
     public void MustLoginBinding() {
     }
@@ -40,9 +44,16 @@ public class MustLoginImpl {
         HttpServletRequest request = requestAttributes.getRequest();
         Cookie[] cookies = request.getCookies();
         boolean haveToken = false;
-        for (Cookie cookie : cookies) {
-            if(token.getCookieName().equals(cookie.getName())){
-                haveToken = true;
+        if(cookies != null){
+            for (Cookie cookie : cookies) {
+                if(token.getCookieName().equals(cookie.getName())){
+                    String token = cookie.getValue();
+                    Object obj = redisService.get(token);
+                    if(obj != null){
+                        haveToken = true;
+                        break;
+                    }
+                }
             }
         }
         if(!haveToken){

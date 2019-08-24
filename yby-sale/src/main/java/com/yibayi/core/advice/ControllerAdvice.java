@@ -18,9 +18,9 @@ import java.util.concurrent.TimeoutException;
 public class ControllerAdvice {
 
     /**
-     * 其他异常响应捕获
+     * 未登录异常响应捕获
      * */
-    @ExceptionHandler()
+    @ExceptionHandler(UnloggedException.class)
     public ResponseBean unloggedException(UnloggedException e){
         log.error(e.getMessage());
         return  new ResponseBean(null, "该请求需要用户登陆！").unlogged();
@@ -45,11 +45,11 @@ public class ControllerAdvice {
     }
 
     /**
-     * 其他异常响应捕获
+     * 运行时异常响应捕获
      * */
     @ExceptionHandler()
-    public ResponseBean exceptionHandler(Exception e){
+    public ResponseBean exceptionHandler(RuntimeException e){
         log.error(e.getMessage());
-        return  new ResponseBean(null, "请求未被正确响应！").failed();
+        return  new ResponseBean(null, "请求运行时异常！").failed();
     }
 }

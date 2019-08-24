@@ -32,7 +32,7 @@ public class CrossTokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        /*HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String origin = request.getHeader("Origin");
         if(origin == null){
@@ -40,7 +40,9 @@ public class CrossTokenFilter implements Filter {
         }
         response.setHeader("Access-Control-Allow-Origin", origin);
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        String action = request.getHeader("SOAPAction");*/
+        String action = request.getHeader("SOAPAction");
+
+        filterChain.doFilter(request, response);
     }
 
     @Override
