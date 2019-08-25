@@ -75,6 +75,9 @@ public class ResoldApartment implements Serializable {
     @ApiModelProperty(value = "区")
     private String district;
 
+    @ApiModelProperty(value = "详细地址")
+    private String address;
+
     @ApiModelProperty(value = "经度")
     private String longitude;
 
