@@ -1,10 +1,12 @@
 # ip地址
 spring:
   redis:
-    host: localhost
+#    host: localhost
+    host: 192.168.5.58
     port: 6379
     database: 0
-    password: password
+#    password: password
+    password: yibayi_181~jishubu*007
     timeout: 10000
     jedis:
       pool:

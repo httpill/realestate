@@ -6,6 +6,7 @@ import com.yibayi.core.annotation.MustLogin;
 import com.yibayi.core.redis.RedisService;
 import com.yibayi.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import util.generator.IdGenerator;
@@ -42,7 +43,7 @@ public class TestController {
     /**
      * 去读redis信息
      * */
-    @RequestMapping("/redis")
+    @GetMapping("/redis")
     public ResponseBean<String> getTestNumber(){
         redisService.set("test", "123456");
         return new ResponseBean(redisService.get("test"), null).success();
@@ -51,7 +52,7 @@ public class TestController {
     /**
      * mybatisplus获取用户
      * */
-    @RequestMapping("/user")
+    @GetMapping("/user")
     public ResponseBean<String> nullApi(Long id){
         return new ResponseBean(userService.findUser(id), "获取用户信息成功").success();
     }
@@ -59,7 +60,7 @@ public class TestController {
     /**
      * redis+mybatisplus获取用户
      * */
-    @RequestMapping("/currentUser")
+    @GetMapping("/currentUser")
     public ResponseBean<String> currentUser(){
         //通过测试环境置业前端获取的cookie信息模拟在本地redis存放用户id再查出
         redisService.set("21cedfa2-742f-40d3-bb51-d44139940efa-10195o343", "3");
@@ -69,7 +70,7 @@ public class TestController {
     /**
      * 返回空
      * */
-    @RequestMapping("/null")
+    @GetMapping("/null")
     public ResponseBean<String> nullApi(){
         String a = null;
         return new ResponseBean(null).success();
@@ -78,7 +79,7 @@ public class TestController {
     /**
      * 响应处理逻辑返回失败
      * */
-    @RequestMapping("/failed")
+    @GetMapping("/failed")
     public ResponseBean<String> failed(){
         return new ResponseBean(ResponseStatusEnum.FAILED).failed();
     }
@@ -86,7 +87,7 @@ public class TestController {
     /**
      * 运行报错测试是否返回平台约定正确响应格式
      * */
-    @RequestMapping("/runtimeException")
+    @GetMapping("/runtimeException")
     public ResponseBean<Integer> runtimeException(){
         throw new RuntimeException("运行时异常");
     }
@@ -95,7 +96,7 @@ public class TestController {
      * @MustLogin 强调需要登陆的接口
      * */
     @MustLogin
-    @RequestMapping("/mustLogin")
+    @GetMapping("/mustLogin")
     public ResponseBean<Integer> mustLogin() throws TimeoutException {
         throw new TimeoutException("超时异常");
     }
