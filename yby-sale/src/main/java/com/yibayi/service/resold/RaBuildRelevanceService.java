@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RaBuildRelevanceService extends IService<RaBuildRelevance> {
 
+    void phyDel(long raId);
 }

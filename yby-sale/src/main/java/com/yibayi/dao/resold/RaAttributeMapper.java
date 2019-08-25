@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface RaAttributeMapper extends BaseMapper<RaAttribute> {
 
+    int phyDel(long raId);
+
 }

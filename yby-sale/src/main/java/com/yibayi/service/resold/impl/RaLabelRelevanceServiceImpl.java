@@ -4,6 +4,7 @@ import com.yibayi.bean.entity.resold.RaLabelRelevance;
 import com.yibayi.dao.resold.RaLabelRelevanceMapper;
 import com.yibayi.service.resold.RaLabelRelevanceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RaLabelRelevanceServiceImpl extends ServiceImpl<RaLabelRelevanceMapper, RaLabelRelevance> implements RaLabelRelevanceService {
+    @Autowired
+    private RaLabelRelevanceMapper raLabelRelevanceMapper;
 
+    /**
+     * 物理删除二手房关联标签
+     * @param raId
+     */
+    public void phyDel(long raId){
+        raLabelRelevanceMapper.phyDel(raId);
+    }
 }

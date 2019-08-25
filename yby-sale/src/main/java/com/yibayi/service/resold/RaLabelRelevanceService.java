@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-08-25
  */
 public interface RaLabelRelevanceService extends IService<RaLabelRelevance> {
-
+    void phyDel(long raId);
 }

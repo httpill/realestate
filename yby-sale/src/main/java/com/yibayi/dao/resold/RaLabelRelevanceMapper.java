@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface RaLabelRelevanceMapper extends BaseMapper<RaLabelRelevance> {
 
+    int phyDel(long raId);
 }

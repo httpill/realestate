@@ -28,7 +28,7 @@ public class DataAnalysis implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "数据类型(sencondhouse-二手房)")
+    @ApiModelProperty(value = "数据类型(second_house-二手房)")
     private String dataType;
 
     @ApiModelProperty(value = "数据id")

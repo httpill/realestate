@@ -15,6 +15,8 @@ import java.util.List;
  */
 @Data
 public class ReleaseRADto {
+    @ApiModelProperty(value = "二手房ID")
+    private Long raId;
 
     @ApiModelProperty(value = "新盘ID")
     private Long buildId;
