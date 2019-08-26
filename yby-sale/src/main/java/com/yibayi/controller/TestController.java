@@ -18,9 +18,6 @@ import java.util.concurrent.TimeoutException;
 public class TestController {
 
     @Autowired
-    private RedisService redisService;
-
-    @Autowired
     private UserService userService;
 
     /**
@@ -45,8 +42,8 @@ public class TestController {
      * */
     @GetMapping("/redis")
     public ResponseBean<String> getTestNumber(){
-        redisService.set("test", "123456");
-        return new ResponseBean(redisService.get("test"), null).success();
+        RedisService.set("test", "123456");
+        return new ResponseBean(RedisService.get("test"), null).success();
     }
 
     /**
@@ -63,7 +60,7 @@ public class TestController {
     @GetMapping("/currentUser")
     public ResponseBean<String> currentUser(){
         //通过测试环境置业前端获取的cookie信息模拟在本地redis存放用户id再查出
-        redisService.set("21cedfa2-742f-40d3-bb51-d44139940efa-10195o343", "3");
+        RedisService.set("21cedfa2-742f-40d3-bb51-d44139940efa-10195o343", "3");
         return new ResponseBean(userService.currentUser(), "获取用户信息成功").success();
     }
 
